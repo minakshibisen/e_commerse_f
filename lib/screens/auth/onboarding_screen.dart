@@ -1,5 +1,6 @@
 import 'package:e_commerse_f/component/shape_painter.dart';
-import 'package:e_commerse_f/screens/auth/sign_up_screen.dart';
+import 'package:e_commerse_f/screens/auth/frame2_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'login_screen.dart';
@@ -96,7 +97,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
               } else {
                 Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                     const SignUpScreen(),
+                     const Frame2Screen(),
                   transitionDuration: const Duration(milliseconds: 1000),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {

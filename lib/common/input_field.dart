@@ -56,9 +56,9 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(
@@ -66,9 +66,9 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
           if (widget.hasIcon)
             Icon(
               widget.icon,
-              size: 18,
-                color: Theme.of(context).colorScheme.onSecondary ),
-          const SizedBox(width: 10.0),
+              size: 22,
+                color: Colors.black ),
+          const SizedBox(width: 15.0),
           Expanded(
             child: TextField(
               obscureText: passwordVisible,
@@ -88,7 +88,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
                 border: InputBorder.none,
                 hintText: widget.hintText,
                 counterText: "",
-                hintStyle: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                hintStyle: TextStyle(fontSize: 14, color: Colors.grey[800],fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -101,7 +101,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
                   passwordVisible = !passwordVisible;
                 });
               },
-              icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
+              icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off,color: Colors.black,),
             )
         ],
       ),
