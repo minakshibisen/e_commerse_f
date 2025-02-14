@@ -67,7 +67,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _buildPageIndicator() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28.0,vertical: 60),
+      padding: const EdgeInsets.symmetric(horizontal: 28.0,vertical: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -188,27 +188,29 @@ class OnboardingPage extends StatelessWidget {
                   )),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 0),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
             child: Text(
               title,
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
+              maxLines: 2,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(vertical:0,horizontal: 20),
             child: Text(
               description,
               textAlign: TextAlign.start,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: Colors.grey[700],
               ),
+              maxLines: 2,
             ),
           ),
         ],

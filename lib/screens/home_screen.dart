@@ -1,6 +1,8 @@
 import 'package:e_commerse_f/common/default_app_bar.dart';
-import 'package:e_commerse_f/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'detail_screen.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: DefaultAppBar(size: size, image: 'assets/images/dummy.png', icon: Icons.menu_open),
+      appBar: DefaultAppBar(size: size, actionIcon: Icons.person, icon: Icons.menu_open),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -18,7 +20,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 const Text(
                   'Welcome,',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -132,15 +134,19 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    categoryChip('Dresses', true),
-                    categoryChip('Jackets', false),
-                    categoryChip('Jeans', false),
-                    categoryChip('Shoes', false),
-                  ],
+                SizedBox(
+                  height: 40,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      categoryChip('Dresses', true),
+                      categoryChip('Jackets', false),
+                      categoryChip('Jeans', false),
+                      categoryChip('Shoes', false),
+                    ],
+                  ),
                 ),
+
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,10 +169,10 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
-                      dressItem('assets/images/img.png', 'Roller Rabbit'),
-                      dressItem('assets/images/img_2.png', 'Endless Rose'),
-                      dressItem('assets/images/img_1.png', 'Endless Rose'),
-                      dressItem('assets/images/img_3.png', 'Endless Rose'),
+                      dressItem('assets/images/img.png', 'Roller Rabbit', context),
+                      dressItem('assets/images/img_2.png', 'Endless Rose', context),
+                      dressItem('assets/images/img_1.png', 'Endless Rose', context),
+                      dressItem('assets/images/img_3.png', 'Endless Rose', context),
                     ],
                   ),
                 ),
@@ -194,13 +200,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget dressItem(String imagePath, String name) {
+  Widget dressItem(String imagePath, String name, BuildContext context) {
     return Container(
       width: 190,
-      margin:  EdgeInsets.only(right:5),
+      margin: const EdgeInsets.only(right: 5),
       child: GestureDetector(
-        onTap: (){
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ProductDetailsScreen()));
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const ProductDetailsScreen(),
+          ));
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,16 +225,17 @@ class HomeScreen extends StatelessWidget {
                   right: 10,
                   child: CircleAvatar(
                     backgroundColor: Colors.black,
-                    child: Icon(Icons.favorite_border,color: Colors.white,),
+                    child: Icon(Icons.favorite_border, color: Colors.white),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 5),
-            Text(name, style: const TextStyle(fontWeight: FontWeight.bold,),maxLines: 2,),
+            Text(name, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 2),
           ],
         ),
       ),
     );
   }
+
 }

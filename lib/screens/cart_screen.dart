@@ -1,4 +1,5 @@
 import 'package:e_commerse_f/common/default_app_bar.dart';
+import 'package:e_commerse_f/screens/checkout_screen.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
@@ -36,7 +37,7 @@ class CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: DefaultAppBar(
         size: size,
-        image: 'assets/images/cart.png',
+        actionIcon: Icons.shopping_bag_outlined,
         icon: Icons.arrow_back_sharp,
       ),
       backgroundColor: Colors.white,
@@ -73,7 +74,9 @@ class CartScreenState extends State<CartScreen> {
                   ),
                   minimumSize: const Size(double.infinity, 60),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CheckoutScreen()));
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -127,8 +130,6 @@ class CartScreenState extends State<CartScreen> {
               ),
             ),
             const SizedBox(width: 15),
-
-            // Product Details
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,11 +186,6 @@ class CartScreenState extends State<CartScreen> {
                 ],
               ),
             ),
-
-
-
-            // Quantity Selector
-
           ],
         ),
       ),

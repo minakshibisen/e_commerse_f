@@ -19,34 +19,37 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double textScale = MediaQuery.textScalerOf(context).scale(1.0); // Text scaling
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.07), // Responsive padding
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Logo
-              const SizedBox(height: 70),
-              const Text(
+              SizedBox(height: size.height * 0.08), // Responsive height
+              Text(
                 'Fashions',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50 * textScale, // Scalable font size
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cursive',
                 ),
               ),
-              const Text(
+              Text(
                 'My Life My Style',
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 12 * textScale,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cursive',
                 ),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: size.height * 0.05),
 
               const Align(
                 alignment: Alignment.centerLeft,
@@ -62,34 +65,33 @@ class _SignInScreenState extends State<SignInScreen> {
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: size.height * 0.04),
 
               InputFieldWidget(
                   hintText: 'User Name',
                   icon: Icons.person,
                   textInputAction: TextInputAction.next,
                   controller: usernameController),
-              const SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: size.height * 0.02),
 
               InputFieldWidget(
                   hintText: 'Password',
                   icon: Icons.password,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   controller: passwordController),
-              const SizedBox(height: 40),
+              SizedBox(height: size.height * 0.04),
 
               PrimaryButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const StartShoppingScreen() ));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StartShoppingScreen()));
                 },
                 context: context,
                 text: "Login",
                 textColor: Colors.white,
                 color: Colors.black,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: size.height * 0.02),
 
               const Row(
                 children: [
@@ -101,65 +103,58 @@ class _SignInScreenState extends State<SignInScreen> {
                   Expanded(child: Divider()),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: size.height * 0.02),
 
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  side: const BorderSide(color: Colors.grey),
-                ),
-                onPressed: () {},
-                icon:
-                const FaIcon(FontAwesomeIcons.facebook, color: Colors.white),
-                label: const Text(
-                  'Continue with Facebook',
-                  style: TextStyle(color: Colors.white),
-                ),
+              _buildSocialButton(
+                context,
+                icon: FontAwesomeIcons.facebook,
+                text: 'Continue with Facebook',
+                backgroundColor: AppColors.primaryColor,
+                textColor: Colors.white,
               ),
-              const SizedBox(height: 20),
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  side: const BorderSide(color: Colors.grey),
-                ),
-                onPressed: () {},
-                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.black),
-                label: const Text(
-                  'Continue with Google',
-                  style: TextStyle(color: Colors.black),
-                ),
+              SizedBox(height: size.height * 0.02),
+
+              _buildSocialButton(
+                context,
+                icon: FontAwesomeIcons.google,
+                text: 'Continue with Google',
+                backgroundColor: Colors.white,
+                textColor: Colors.black,
               ),
+              SizedBox(height: size.height * 0.02),
 
-              const SizedBox(height: 20),
-
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  side: const BorderSide(color: Colors.grey),
-                ),
-                onPressed: () {},
-                icon: const FaIcon(FontAwesomeIcons.apple, color: Colors.black),
-                label: const Text(
-                  'Continue with Apple',
-                  style: TextStyle(color: Colors.black),
-                ),
+              _buildSocialButton(
+                context,
+                icon: FontAwesomeIcons.apple,
+                text: 'Continue with Apple',
+                backgroundColor: Colors.white,
+                textColor: Colors.black,
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSocialButton(BuildContext context,
+      {required IconData icon,
+        required String text,
+        required Color backgroundColor,
+        required Color textColor}) {
+    Size size = MediaQuery.of(context).size;
+    return OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        minimumSize: Size(size.width * 0.85, 50), // Responsive width
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        side: const BorderSide(color: Colors.grey),
+      ),
+      onPressed: () {},
+      icon: FaIcon(icon, color: textColor),
+      label: Text(text, style: TextStyle(color: textColor)),
     );
   }
 }

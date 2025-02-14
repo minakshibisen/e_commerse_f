@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
-
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final String image;
   final Size size;
   final IconData icon;
+  final IconData actionIcon; // 🔹 New parameter for action icon
 
-  const DefaultAppBar({super.key, this.title = '', required this.size, required this.image, required this.icon});
+  const DefaultAppBar({
+    super.key,
+    this.title = '',
+    required this.size,
+    required this.icon,
+    required this.actionIcon, // 🔹 Required icon for action
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,48 +22,36 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: size.height,
       actions: [
         Padding(
-          padding: const EdgeInsets.only(right: 20,top:30),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[100], // Set background color
-              borderRadius: BorderRadius.circular(25), // Match ClipRRect radius
+          padding: const EdgeInsets.only(right: 20, top: 30),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey[200], // Light background for contrast
+            child: IconButton(
+              icon: Icon(actionIcon, color: Colors.black, size: 24), // ✅ New Action Icon
+              onPressed: () {
+              },
             ),
-            padding: const EdgeInsets.all(8), // Optional: Adjust padding for spacing
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Image.asset(image, width: 35, height: 35, fit: BoxFit.cover,),
-            ),
-          )
+          ),
         ),
       ],
-      leadingWidth: size.width * .5,
-      leading: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child:  Padding(
-          padding: const EdgeInsets.only(left: 20.0,top: 30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child:  Icon(icon,
-                    color: Colors.white),
-              ),
-            ],
+      leadingWidth: size.width * .25,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 0.0, top: 30),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: CircleAvatar(
+            backgroundColor: Colors.black,
+            child: IconButton(
+              icon: Icon(icon, color: Colors.white),
+              onPressed: () => Navigator.pop(context), // ✅ Ensure back navigation
+            ),
           ),
         ),
       ),
-
     );
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(size.height * 0.09);
 }
