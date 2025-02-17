@@ -1,4 +1,4 @@
-import 'package:e_commerse_f/screens/auth/start_shopping_screen.dart';
+import 'package:e_commerce_f/screens/auth/start_shopping_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

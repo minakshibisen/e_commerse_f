@@ -1,4 +1,4 @@
-import 'package:e_commerse_f/common/default_app_bar.dart';
+import 'package:e_commerce_f/common/default_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'detail_screen.dart';

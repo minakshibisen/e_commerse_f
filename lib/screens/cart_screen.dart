@@ -1,15 +1,15 @@
-import 'package:e_commerse_f/common/default_app_bar.dart';
-import 'package:e_commerse_f/screens/checkout_screen.dart';
+import 'package:e_commerce_f/common/default_app_bar.dart';
+import 'package:e_commerce_f/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
-  State<CartScreen> createState() => CartScreenState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class CartScreenState extends State<CartScreen> {
+class _CartScreenState extends State<CartScreen> {
   List<Map<String, dynamic>> cartItems = [
     {
       "image": "assets/images/img_1.png",
@@ -34,6 +34,7 @@ class CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: DefaultAppBar(
         size: size,
@@ -43,15 +44,17 @@ class CartScreenState extends State<CartScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
                 'My Cart',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
+
+              // CART LIST
               Expanded(
                 child: ListView.builder(
                   itemCount: cartItems.length,
@@ -66,35 +69,42 @@ class CartScreenState extends State<CartScreen> {
                 ),
               ),
 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+              // CHECKOUT BUTTON
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    minimumSize: Size(double.infinity, size.height * 0.07), // Dynamic height
                   ),
-                  minimumSize: const Size(double.infinity, 60),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CheckoutScreen()));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      "Proceed to Checkout",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const CheckoutScreen()));
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Proceed to Checkout",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                      child:  const Icon( Icons.arrow_forward,
-                          color: Colors.black),
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Icon(Icons.arrow_forward, color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -106,68 +116,62 @@ class CartScreenState extends State<CartScreen> {
 
   Widget cartItemCard(String image, String name, String description, String price) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       color: Colors.grey[100],
-      margin: const EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Product Image
-            Card(
-              shape: const RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.all(Radius.circular(16))),
-              clipBehavior: Clip.hardEdge,
-              child: SizedBox(
-                height: 100,
-                width: 100,
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                image,
+                height: 80, // Responsive size
+                width: 80,
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(width: 15),
-            Flexible(
+            const SizedBox(width: 12),
+
+            // Product Details
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     description,
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                     maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
+
+                  // Price and Quantity Controls
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         price,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                         child: Row(
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.remove, size: 16),
+                              icon: const Icon(Icons.remove, size: 18),
                               onPressed: () {},
                             ),
                             const Text(
@@ -175,7 +179,7 @@ class CartScreenState extends State<CartScreen> {
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                             IconButton(
-                              icon: const Icon(Icons.add, size: 16),
+                              icon: const Icon(Icons.add, size: 18),
                               onPressed: () {},
                             ),
                           ],

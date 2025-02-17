@@ -1,5 +1,5 @@
-import 'package:e_commerse_f/common/primary_button.dart';
-import 'package:e_commerse_f/screens/navigation_screem.dart';
+import 'package:e_commerce_f/common/primary_button.dart';
+import 'package:e_commerce_f/screens/navigation_screem.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

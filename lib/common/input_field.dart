@@ -88,7 +88,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
                 border: InputBorder.none,
                 hintText: widget.hintText,
                 counterText: "",
-                hintStyle: TextStyle(fontSize: 14, color: Colors.grey[800],fontWeight: FontWeight.bold),
+                hintStyle: TextStyle(fontSize: 14, color: Colors.grey[4+00],fontWeight: FontWeight.bold),
               ),
             ),
           ),

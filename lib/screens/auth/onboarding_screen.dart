@@ -1,5 +1,5 @@
-import 'package:e_commerse_f/component/shape_painter.dart';
-import 'package:e_commerse_f/screens/auth/frame2_screen.dart';
+import 'package:e_commerce_f/component/shape_painter.dart';
+import 'package:e_commerce_f/screens/auth/frame2_screen.dart';
 
 import 'package:flutter/material.dart';
 

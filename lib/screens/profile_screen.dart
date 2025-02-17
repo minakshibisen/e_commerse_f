@@ -1,7 +1,7 @@
-import 'package:e_commerse_f/common/default_app_bar.dart';
-import 'package:e_commerse_f/utils/colors.dart';
+import 'package:e_commerce_f/common/default_app_bar.dart';
+import 'package:e_commerce_f/screens/order_history_screen.dart';
+import 'package:e_commerce_f/utils/colors.dart';
 import 'package:flutter/material.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,33 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final List<Map<String, dynamic>> listItems1 = [
-      {
-        "title": 'Privacy Policy',
-        "icon": Icons.settings,
-        "onTap": () {},
-      },
-      {
-        "title": 'Terms & Conditions',
-        "icon": Icons.comment,
-        "onTap": () {},
-      },
-      {
-        "title": 'Help Support',
-        "icon": Icons.support,
-        "onTap": () {},
-      },
-      {
-        "title": 'About',
-        "icon": Icons.info,
-        "onTap": () {},
-      },
-      {
-        "title": 'Logout',
-        "icon": Icons.logout,
-        "onTap": () {},
-      },
-    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
@@ -50,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Profile Card
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 25),
               child: Card(
@@ -100,25 +75,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-        
+
+
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
               child: _buildMenuSection([
-                _buildMenuItem(Icons.person, "Personal Details"),
-                _buildMenuItem(Icons.shopping_bag, "My Order"),
-                _buildMenuItem(Icons.favorite_border, "My Favourites"),
-                _buildMenuItem(Icons.local_shipping, "Shipping Address"),
-                _buildMenuItem(Icons.credit_card, "My Card"),
-                _buildMenuItem(Icons.settings, "Settings"),
+                _buildMenuItem(Icons.person, "Personal Details", () {}),
+                _buildMenuItem(Icons.shopping_bag, "My Order", () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyOrderScreen()));
+                }),
+                _buildMenuItem(Icons.favorite_border, "My Favourites", () {}),
+                _buildMenuItem(Icons.local_shipping, "Shipping Address", () {}),
+                _buildMenuItem(Icons.credit_card, "My Card", () {}),
+                _buildMenuItem(Icons.settings, "Settings", () {}),
               ]),
             ),
-        
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 25),
-              child: _buildMenuSection([
-                _buildMenuItem(Icons.question_answer_outlined, "FAQ's"),
-                _buildMenuItem(Icons.privacy_tip_outlined, "Privacy Policy"),
 
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+              child: _buildMenuSection([
+                _buildMenuItem(Icons.question_answer_outlined, "FAQ's", () {}),
+                _buildMenuItem(Icons.privacy_tip_outlined, "Privacy Policy", () {}),
               ]),
             ),
           ],
@@ -132,29 +111,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color:AppColors.grey),
+        border: Border.all(color: AppColors.grey), // Fixed Color Reference
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(children: items),
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
+  Widget _buildMenuItem(IconData icon, String title, VoidCallback onTap) {
     return ListTile(
-      leading:      Container(
+      leading: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(8),
         ),
-        child:  Icon(icon,
-            color: Colors.white, size: 16),
+        child: Icon(icon, color: Colors.white, size: 16),
       ),
-      title: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500,color: Colors.black)),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+      ),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
-
-

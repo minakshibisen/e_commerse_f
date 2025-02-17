@@ -1,8 +1,9 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
-import 'package:e_commerse_f/screens/detail_screen.dart';
-import 'package:e_commerse_f/screens/notification_screen.dart';
-import 'package:e_commerse_f/screens/profile_screen.dart';
+import 'package:e_commerce_f/screens/detail_screen.dart';
+import 'package:e_commerce_f/screens/notification_screen.dart';
+import 'package:e_commerce_f/screens/profile_screen.dart';
+import 'package:e_commerce_f/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'cart_screen.dart';
@@ -22,7 +23,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   final List<Widget> screens = [
     const HomeScreen(),
     const ProductDetailsScreen(),
-    const NotificationScreen(),
+    const WishlistScreen(),
     const ProfileScreen(),
   ];
 
