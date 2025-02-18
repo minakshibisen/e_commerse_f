@@ -31,11 +31,11 @@ class _SignInScreenState extends State<SignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Logo
-              SizedBox(height: size.height * 0.08), // Responsive height
+              SizedBox(height: size.height * 0.08),
               Text(
                 'Fashions',
                 style: TextStyle(
-                  fontSize: 50 * textScale, // Scalable font size
+                  fontSize: 50 * textScale,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cursive',
                 ),

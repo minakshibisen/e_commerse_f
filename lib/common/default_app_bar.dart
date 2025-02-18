@@ -11,7 +11,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title = '',
     required this.size,
     required this.icon,
-    required this.actionIcon, // 🔹 Required icon for action
+    required this.actionIcon,
   });
 
   @override
@@ -24,9 +24,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 20, top: 30),
           child: CircleAvatar(
-            backgroundColor: Colors.grey[200], // Light background for contrast
+            backgroundColor: Colors.black,
             child: IconButton(
-              icon: Icon(actionIcon, color: Colors.black, size: 24), // ✅ New Action Icon
+              icon: Icon(actionIcon, color: Colors.white, size: 24),
               onPressed: () {
               },
             ),

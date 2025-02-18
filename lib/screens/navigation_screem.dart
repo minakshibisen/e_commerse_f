@@ -3,7 +3,6 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:e_commerce_f/screens/detail_screen.dart';
 import 'package:e_commerce_f/screens/notification_screen.dart';
 import 'package:e_commerce_f/screens/profile_screen.dart';
-import 'package:e_commerce_f/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'cart_screen.dart';
@@ -23,7 +22,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   final List<Widget> screens = [
     const HomeScreen(),
     const ProductDetailsScreen(),
-    const WishlistScreen(),
+    const NotificationScreen(),
     const ProfileScreen(),
   ];
 
@@ -38,7 +37,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         backgroundColor: Colors.white,
         color: Colors.black,
         buttonBackgroundColor: Colors.black,
-        height: 60,
+        height: 80,
         animationDuration: const Duration(milliseconds: 300),
         items: const [
           CurvedNavigationBarItem(
@@ -64,7 +63,6 @@ class _NavigationExampleState extends State<NavigationExample> {
 
         onTap: (index) {
           if (index == 1) {
-
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const CartScreen()));
           } else {

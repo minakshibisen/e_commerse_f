@@ -1,5 +1,7 @@
 import 'package:e_commerce_f/common/default_app_bar.dart';
+import 'package:e_commerce_f/screens/favorite_screen.dart';
 import 'package:e_commerce_f/screens/order_history_screen.dart';
+import 'package:e_commerce_f/screens/wishlist_screen.dart';
 import 'package:e_commerce_f/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +87,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => const MyOrderScreen()));
                 }),
-                _buildMenuItem(Icons.favorite_border, "My Favourites", () {}),
+                _buildMenuItem(Icons.favorite_border, "My Favourites", () {    Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const FavoriteScreen()));
+                }),
+                _buildMenuItem(Icons.favorite, "Wishlist", () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const WishlistScreen()));
+                }),
                 _buildMenuItem(Icons.local_shipping, "Shipping Address", () {}),
                 _buildMenuItem(Icons.credit_card, "My Card", () {}),
                 _buildMenuItem(Icons.settings, "Settings", () {}),

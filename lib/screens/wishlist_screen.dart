@@ -109,7 +109,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
     );
   }
 
-  // Search Bar
   Widget _buildSearchBar() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -127,7 +126,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
     );
   }
 
-  // Wishlist Item Card
   Widget _buildWishlistItem(String image, String title, String subtitle, String price) {
     return Card(
       color: Colors.grey[100],

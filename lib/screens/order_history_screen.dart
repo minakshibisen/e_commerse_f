@@ -52,12 +52,12 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Title
+           const SizedBox(height: 30),
             const Text(
               'My Order',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
 
             // Tab Bar
             Row(
@@ -69,7 +69,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                 _buildTabButton("Completed", !isOngoingSelected),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
             // Orders List
             Expanded(
